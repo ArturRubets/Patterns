@@ -20,9 +20,9 @@ class Adaptee {
  * The Adapter makes the Adaptee's interface compatible with the Target's
  * interface.
  */
-class Adapter {
+class Adapter extends Target {
     constructor(adaptee) {
-        // super();
+        super();
         this.adaptee = adaptee;
     }
     request() {
