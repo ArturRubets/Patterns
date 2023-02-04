@@ -72,13 +72,6 @@ class HinduMonkFactory {
         return new HinduClothing();
     }
 }
-class Application {
-    create(monkFactory, type) {
-        const monk = monkFactory.createMonk(type);
-        monk.prepare(monkFactory);
-        return monk;
-    }
-}
 class Monk {
     constructor(kind) {
         this.kind = kind;
@@ -145,6 +138,13 @@ class HinduMonk extends Monk {
     }
     prepare(monkFactory) {
         this.setClothing(monkFactory.createClothing());
+    }
+}
+class Application {
+    create(monkFactory, type) {
+        const monk = monkFactory.createMonk(type);
+        monk.prepare(monkFactory);
+        return monk;
     }
 }
 const application = new Application();

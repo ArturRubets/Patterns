@@ -20,9 +20,9 @@ class Adaptee {
  * The Adapter makes the Adaptee's interface compatible with the Target's
  * interface.
  */
-class Adapter extends Target {
+class Adapter {
     constructor(adaptee) {
-        super();
+        // super();
         this.adaptee = adaptee;
     }
     request() {
@@ -33,12 +33,12 @@ class Adapter extends Target {
 /**
  * The client code supports all classes that follow the Target interface.
  */
-// function clientCode(target: Target) {
-//   console.log(target.request());
-// }
+function clientCode(target) {
+    console.log(target.request());
+}
 console.log('Client: I can work just fine with the Target objects:');
 const target = new Target();
-// clientCode(target);
+clientCode(target);
 console.log('');
 const adaptee = new Adaptee();
 console.log("Client: The Adaptee class has a weird interface. See, I don't understand it:");
@@ -46,6 +46,6 @@ console.log(`Adaptee: ${adaptee.specificRequest()}`);
 console.log('');
 console.log('Client: But I can work with it via the Adapter:');
 const adapter = new Adapter(adaptee);
+clientCode(adapter);
 export {};
-// clientCode(adapter);
 //# sourceMappingURL=adapter.js.map

@@ -1,5 +1,5 @@
-export { };
-  
+export {};
+
 /**
  * The Target defines the domain-specific interface used by the client code.
  */
@@ -41,13 +41,13 @@ class Adapter extends Target {
 /**
  * The client code supports all classes that follow the Target interface.
  */
-// function clientCode(target: Target) {
-//   console.log(target.request());
-// }
+function clientCode(target: Target) {
+  console.log(target.request());
+}
 
 console.log('Client: I can work just fine with the Target objects:');
 const target = new Target();
-// clientCode(target);
+clientCode(target);
 
 console.log('');
 
@@ -61,4 +61,4 @@ console.log('');
 
 console.log('Client: But I can work with it via the Adapter:');
 const adapter = new Adapter(adaptee);
-// clientCode(adapter);
+clientCode(adapter);
