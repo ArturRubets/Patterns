@@ -2,7 +2,8 @@
 class Dot {
     constructor(x, y) { }
     move(x, y) {
-        (this.x += x), (this.y += y);
+        this.x += x;
+        this.y += y;
     }
     draw() {
         // Намалювати крапку у координатах X, Y.
@@ -54,8 +55,8 @@ class ImageEditor {
         for (const component of components) {
             group.add(component);
             this.all.remove(component);
-            this.all.add(group);
         }
+        this.all.add(group);
         // Усі компоненти будуть промальованими.
         this.all.draw();
     }
