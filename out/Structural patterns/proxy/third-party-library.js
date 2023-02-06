@@ -33,19 +33,50 @@ class CachedYouTubeClass {
         return this.listCache;
     }
     getVideoInfo(id) {
-        throw new Error('Method not implemented.');
+        if (this.videoCache == null || this.needReset) {
+            this.videoCache = this.service.getVideoInfo(id);
+        }
+        return this.videoCache;
     }
     downloadVideo(id) {
-        throw new Error('Method not implemented.');
+        if (!this.downloadExists(id) || this.needReset) {
+            this.service.downloadVideo(id);
+        }
+    }
+    downloadExists(id) {
+        return true;
     }
 }
-class Animal {
+// Клас GUI, який використовує сервісний об'єкт. Замість
+// реального сервісу, ми підсунемо йому об'єкт-замісник. Клієнт
+// нічого не помітить, так як замісник має той самий інтерфейс,
+// що й сервіс.
+class YouTubeManager {
+    constructor(service) {
+        this.service = service;
+    }
+    renderVideoPage(id) {
+        const info = this.service.getVideoInfo(id);
+        // Відобразити сторінку відеоролика.
+    }
+    renderListPanel() {
+        const list = this.service.listVideos();
+        // Відобразити список превью відеороликів.
+    }
+    reactOnUserInput() {
+        this.renderVideoPage(1);
+        this.renderListPanel();
+    }
 }
-class Cat extends Animal {
+// Конфігураційна частина програми створює та передає клієнтам
+// об'єкт замісника.
+class Application {
+    init() {
+        const youTubeService = new ThirdPartyYouTubeClass();
+        const youTubeProxy = new CachedYouTubeClass(youTubeService);
+        const manager = new YouTubeManager(youTubeProxy);
+        manager.reactOnUserInput();
+    }
 }
-class MainCoon extends Cat {
-}
-const myAnimals = [new MainCoon()];
-const myCats = myAnimals;
 export {};
 //# sourceMappingURL=third-party-library.js.map
